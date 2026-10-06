@@ -1,0 +1,14 @@
+---
+// Runs before first paint so a remembered theme doesn't flash the default one.
+---
+
+<script is:inline>
+  try {
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark" || stored === "light") {
+      document.documentElement.dataset.theme = stored;
+    }
+  } catch {
+    // Storage blocked (private mode, disabled cookies): follow the OS setting.
+  }
+</script>

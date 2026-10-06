@@ -1,0 +1,50 @@
+---
+// Hidden until its script runs, so a reader without JS never sees a dead button.
+---
+
+<button type="button" class="theme-toggle mono" aria-pressed="false" hidden data-theme-toggle>
+  Dark theme
+</button>
+
+<script>
+  const root = document.documentElement;
+  const button = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+  const prefersLight = window.matchMedia("(prefers-color-scheme: light)");
+
+  function currentTheme(): "dark" | "light" {
+    const set = root.dataset.theme;
+    if (set === "dark" || set === "light") return set;
+    return prefersLight.matches ? "light" : "dark";
+  }
+
+  if (button) {
+    const sync = () => button.setAttribute("aria-pressed", String(currentTheme() === "dark"));
+    button.hidden = false;
+    sync();
+    button.addEventListener("click", () => {
+      const next = currentTheme() === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        // Can't remember the choice; it still applies for this page view.
+      }
+      sync();
+    });
+    prefersLight.addEventListener("change", sync);
+  }
+</script>
+
+<style>
+  .theme-toggle {
+    min-height: 44px;
+  }
+
+  .theme-toggle[aria-pressed="true"]::before {
+    content: "● " / "";
+  }
+
+  .theme-toggle[aria-pressed="false"]::before {
+    content: "○ " / "";
+  }
+</style>

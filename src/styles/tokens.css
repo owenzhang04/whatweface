@@ -1,0 +1,73 @@
+/*
+ * Design tokens. Values come from docs/DESIGN.md §2–4; change them there first.
+ * Dark is the default theme. Light applies when the OS prefers it, unless the
+ * reader overrode it with the toggle (html[data-theme]).
+ */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0c0e;
+  --surface: #15171b;
+  --line: #262a31;
+  --text: #e8e6e1;
+  --muted: #8a8f98;
+  --ember: #e2683c;
+  --scale-individual: #d9b48f;
+  --scale-humanity: #a99bf0;
+  --scale-earth: #6fc2b0;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #f4f2ed;
+    --surface: #ffffff;
+    --line: #d6d3cc;
+    --text: #16171a;
+    --muted: #5a5e66;
+    --ember: #b4441a;
+    --scale-individual: #8a5a2b;
+    --scale-humanity: #5b4bb0;
+    --scale-earth: #1f6e60;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f2ed;
+  --surface: #ffffff;
+  --line: #d6d3cc;
+  --text: #16171a;
+  --muted: #5a5e66;
+  --ember: #b4441a;
+  --scale-individual: #8a5a2b;
+  --scale-humanity: #5b4bb0;
+  --scale-earth: #1f6e60;
+}
+
+:root {
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --max-width: 1200px;
+  --measure: 68ch;
+  --gutter: 16px;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 32px;
+  }
+}
