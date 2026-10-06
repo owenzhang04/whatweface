@@ -1,0 +1,11 @@
+dist/
+.astro/
+node_modules/
+pnpm-lock.yaml
+data/series/
+public/fonts/
+.lighthouseci/
+playwright-report/
+test-results/
+LICENSE-CONTENT
+*.md
