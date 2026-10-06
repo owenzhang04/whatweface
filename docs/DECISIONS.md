@@ -14,4 +14,5 @@ Append-only. Newest at the bottom.
 | 2026-10-06 | Ranking: within each scale by its own metric (Individual: DALYs; Humanity: people affected; Earth: planetary boundary transgression). Never across scales | Metrics aren't comparable across scales |
 | 2026-10-06 | v1 = 5 problems per scale, 15 total | Shippable; fully cited pages are slow to write |
 | 2026-10-06 | Audience: general public, ~grade 9 reading level, depth in expandable sections | |
-| 2026-10-06 | **Pending Owen:** Domain: buy `whatweface.org` at launch (Phase 4); skip `.com` unless traffic justifies it (recommended) | No revenue; `pages.dev` is free until there's something to point at |
+| 2026-10-06 | Domain: buy `whatweface.org` at launch (Phase 4); skip `.com` unless traffic justifies it | No revenue; `pages.dev` is free until there's something to point at |
+| 2026-10-06 | License: code MIT (`LICENSE`); written content and original data compilations CC BY 4.0 (`LICENSE-CONTENT`). Third-party data keeps its own license (see DATA.md) | Open reuse with attribution, matching OWID/World Bank |
