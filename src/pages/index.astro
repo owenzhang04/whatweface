@@ -1,14 +1,83 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ComingSoon from "../components/ComingSoon.astro";
+import { SCALE_LIST } from "../lib/scales";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>What We Face</title>
-  </head>
-  <body>
-    <main>
-      <h1>What We Face</h1>
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="What We Face"
+  description="The biggest problems we have faced, are facing and will face, at three scales: a person, humanity and the planet. Every number cited."
+>
+  <div class="grid-bg">
+    <h1>What We Face</h1>
+    <p class="premise">
+      The biggest problems we have faced, are facing and will face, at three scales: a person,
+      humanity and the planet. Every number is cited.
+    </p>
+
+    <ul class="scales">
+      {SCALE_LIST.map((s) => (
+        <li class={`scale-card scale-${s.slug}`}>
+          <a href={`/${s.slug}`}>
+            <span class="mono">
+              Scale {s.number} / {s.name}
+            </span>
+            <span class="summary">{s.summary}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <ComingSoon what="The front page's headline numbers" />
+  </div>
+</BaseLayout>
+
+<style>
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 8rem 8rem;
+    padding-block: var(--space-6);
+  }
+
+  .premise {
+    font-size: 1.375rem;
+  }
+
+  .scales {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-8) 0;
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    max-width: none;
+  }
+
+  .scale-card a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: var(--surface);
+    border-top: 2px solid currentColor;
+    text-decoration: none;
+  }
+
+  .scale-individual a {
+    border-top-color: var(--scale-individual);
+  }
+
+  .scale-humanity a {
+    border-top-color: var(--scale-humanity);
+  }
+
+  .scale-earth a {
+    border-top-color: var(--scale-earth);
+  }
+
+  .summary {
+    font-size: 1.25rem;
+  }
+</style>

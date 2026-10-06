@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ComingSoon from "../components/ComingSoon.astro";
+import { getCheckedContent } from "../lib/content";
+
+const { sources } = await getCheckedContent();
+const sorted = [...sources].sort((a, b) => a.data.publisher.localeCompare(b.data.publisher));
+---
+
+<BaseLayout
+  title="Sources"
+  description="Every source cited on What We Face, with its tier and an archived copy."
+>
+  <h1>Sources</h1>
+  <p>
+    Every source cited on this site, with its tier and an archived copy. Tier 1 is primary data;
+    tier 2 is a reputable aggregator that names its primary source.
+  </p>
+
+  {sorted.length > 0 && (
+    <ul class="source-list">
+      {sorted.map(({ data: s }) => (
+        <li id={s.id}>
+          <span class="mono">Tier {s.tier}</span>
+          <a href={s.url}>{s.title}</a>. {s.publisher}, {s.year}.
+          <a href={s.archived_url}>
+            Archived copy<span class="visually-hidden"> of {s.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <ComingSoon what="Search across sources" />
+</BaseLayout>
+
+<style>
+  .source-list {
+    padding: 0;
+    list-style: none;
+  }
+
+  .source-list li {
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .source-list .mono {
+    color: var(--muted);
+    margin-right: var(--space-2);
+  }
+</style>

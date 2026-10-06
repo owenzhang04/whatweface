@@ -1,0 +1,55 @@
+---
+import { SCALE_LIST } from "../lib/scales";
+
+const current = Astro.url.pathname.split("/")[1];
+---
+
+<nav aria-label="Scales">
+  <ul class="scale-nav mono">
+    {SCALE_LIST.map((s) => (
+      <li>
+        <a
+          href={`/${s.slug}`}
+          class={`scale-${s.slug}`}
+          aria-current={current === s.slug ? "page" : undefined}
+        >
+          {s.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .scale-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    display: inline-block;
+    padding-block: var(--space-2);
+    text-decoration: none;
+  }
+
+  a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  .scale-individual[aria-current="page"] {
+    text-decoration-color: var(--scale-individual);
+  }
+
+  .scale-humanity[aria-current="page"] {
+    text-decoration-color: var(--scale-humanity);
+  }
+
+  .scale-earth[aria-current="page"] {
+    text-decoration-color: var(--scale-earth);
+  }
+</style>
