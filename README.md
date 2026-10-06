@@ -34,6 +34,12 @@ Each problem gets a short, plain-language page: how big it is (every number cite
 
 Astro + TypeScript + MDX, plain CSS, Observable Plot (build-time SVG), Pagefind, Cloudflare Pages.
 
+## License
+
+- Code: [MIT](LICENSE)
+- Written content (`src/content/`, `docs/`): [CC BY 4.0](LICENSE-CONTENT)
+- Third-party data in `data/` keeps its original license; see [DATA.md](docs/DATA.md#licensing).
+
 ## Corrections
 
 Found a wrong or outdated number? Open an issue with the page, the claim, and a better source.
