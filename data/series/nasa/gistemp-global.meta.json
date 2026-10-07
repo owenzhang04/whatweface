@@ -1,0 +1,8 @@
+{
+  "id": "nasa/gistemp-global",
+  "source": "nasa-gistemp-v4",
+  "endpoint": "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv",
+  "fetched_at": "2026-10-07T00:03:40.222Z",
+  "provider_last_updated": "Tue, 08 Sep 2026 06:29:13 GMT",
+  "rows": 146
+}

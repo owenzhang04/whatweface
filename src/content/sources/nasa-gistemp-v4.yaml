@@ -1,0 +1,10 @@
+id: nasa-gistemp-v4
+tier: 1
+publisher: GISTEMP Team, NASA Goddard Institute for Space Studies
+title: GISS Surface Temperature Analysis (GISTEMP), version 4
+year: 2026
+url: https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv
+archived_url: https://web.archive.org/web/20260914070505/https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv
+accessed: 2026-10-06
+locator: "File GLB.Ts+dSST.csv (global land-ocean temperature index), column J-D: January–December mean, °C relative to the 1951–1980 average"
+license: US government work

@@ -1,0 +1,112 @@
+---
+title: Climate change
+description: How much carbon dioxide is in the air, how much the planet has warmed, and what the science says it takes to stop. Every number cited.
+scale: earth
+status: Active
+last_reviewed: 2026-10-06
+headline: co2-latest
+stats:
+  - id: co2-latest
+    label: Parts per million (ppm) of carbon dioxide in the air at Mauna Loa, Hawaii, monthly average
+    unit: ppm
+    source: noaa-gml-co2-mlo
+    series: noaa/co2-mlo-monthly
+    note: Monthly averages rise and fall with the seasons, so compare the same month across years.
+  - id: co2-1750
+    label: Carbon dioxide in the air in 1750, before industrialisation, from ice cores
+    value: 278.3
+    uncertainty: 2.9
+    unit: ppm
+    as_of: 1750
+    historical: true
+    source: ipcc-ar6-wg1-ch2
+  - id: co2-ten-years-earlier
+    label: Carbon dioxide at Mauna Loa in the same month ten years earlier
+    unit: ppm
+    source: noaa-gml-co2-mlo
+    series: noaa/co2-mlo-monthly
+    offset_years: 10
+  - id: temp-latest-year
+    label: Global average surface temperature compared with the 1951–1980 average
+    unit: °C
+    source: nasa-gistemp-v4
+    series: nasa/gistemp-global
+    note: NASA's uncertainty ensemble covers 1880–2020, so no range is shown for later years.
+cites:
+  - ipcc-ar6-wg1-spm
+  - lenssen-2024-gistemp-uncertainty
+derived:
+  - id: co2-multiple-of-1750
+    from: co2-latest
+    of: co2-1750
+    formula: multiple_of
+    label: That is about {n} times the level in 1750, before the Industrial Revolution.
+actions:
+  - kind: Learn
+    title: Read the IPCC's Summary for Policymakers
+    description: The Intergovernmental Panel on Climate Change's own short summary of the physical science.
+    url: https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf
+    evidence: null
+  - kind: Learn
+    title: Follow the carbon dioxide record as it updates
+    description: NOAA publishes the Mauna Loa measurements every month.
+    url: https://gml.noaa.gov/ccgg/trends/
+    evidence: null
+---
+
+## What it is
+
+Climate change is the long-term warming of the planet and the changes that come with it. Gases such as carbon dioxide trap heat. Since the start of the industrial era, human activity has pushed their levels in the air up, and the Intergovernmental Panel on Climate Change (IPCC), the United Nations body that assesses climate science, finds it is unequivocal that human influence has warmed the atmosphere, ocean and land.<Cite source="ipcc-ar6-wg1-spm" />
+
+## How big it is
+
+The air now holds <Stat id="co2-latest" withPeriod /> of carbon dioxide, measured at Mauna Loa Observatory in Hawaii. Ice cores show it held <Stat id="co2-1750" withPeriod /> before industrialisation.
+
+The planet has warmed with it. NASA's record shows global average surface temperature was <Stat id="temp-latest-year" withPeriod /> above its mid-twentieth-century baseline.
+
+<Chart
+  series="nasa/gistemp-global"
+  source="nasa-gistemp-v4"
+  title="Global surface temperature compared with the 1951–1980 average"
+  unit="°C"
+  yLabel="°C vs 1951–1980 average"
+  axisNote="Zero is the 1951–1980 average, the baseline NASA uses; values above zero are warmer than it."
+/>
+
+## Where it's heading
+
+Carbon dioxide is still rising. In the same month ten years earlier, Mauna Loa measured <Stat id="co2-ten-years-earlier" withPeriod />.
+
+The IPCC finds that global surface temperature will keep rising until at least the middle of this century under every emissions scenario it considered.<Cite source="ipcc-ar6-wg1-spm" />
+
+## What works
+
+From a physical science point of view, the IPCC finds that stopping warming at any level requires limiting the total carbon dioxide we emit, reaching at least net zero carbon dioxide emissions, and making strong cuts to other greenhouse gases.<Cite source="ipcc-ar6-wg1-spm" />
+
+## What you can do
+
+<ActionList />
+
+## More detail
+
+<MoreDetail title="Why Mauna Loa?">
+  The record combines measurements by the Scripps Institution of Oceanography, which started it,
+  with NOAA's measurements that followed. When a volcanic eruption cut off Mauna Loa Observatory,
+  NOAA measured from a site on nearby Maunakea until it could return.
+  <Cite source="noaa-gml-co2-mlo" />
+</MoreDetail>
+
+<MoreDetail title="Why NASA's baseline isn't “pre-industrial”">
+  NASA compares each year with the average of a mid-twentieth-century period. Figures you may see
+  for warming since before industrialisation use an earlier, cooler baseline, so they are larger.
+  The chart shows this: the earliest years sit below zero.
+  <Cite source="nasa-gistemp-v4" />
+</MoreDetail>
+
+<MoreDetail title="How certain are these numbers?">
+  NOAA states an uncertainty for each monthly carbon dioxide average, shown next to the number. NASA
+  estimates the uncertainty of its temperature record with a separate ensemble of possible
+  reconstructions.
+  <Cite source="lenssen-2024-gistemp-uncertainty" /> That ensemble doesn't yet cover the latest
+  years, so no range is shown for them.
+</MoreDetail>

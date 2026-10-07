@@ -1,0 +1,10 @@
+id: noaa-gml-co2-mlo
+tier: 1
+publisher: NOAA Global Monitoring Laboratory and Scripps Institution of Oceanography (Xin Lan, NOAA GML; Ralph Keeling, Scripps)
+title: Mauna Loa CO₂ monthly mean data
+year: 2026
+url: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt
+archived_url: https://web.archive.org/web/20260929112723/https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt
+accessed: 2026-10-06
+locator: "File co2_mm_mlo.txt (file creation 5 September 2026), columns “monthly average” and “unc. of mon mean”"
+license: "Freely available; NOAA GML asks users to credit the data providers (file header, “USE OF NOAA GML DATA”)"
