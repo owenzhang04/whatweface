@@ -50,9 +50,13 @@ export function checkCitations(
         const role = stat.id === data.headline ? "headline stat" : "stat";
         errors.push(`${where} is a ${role} from T3 source "${source.id}"; numbers need T1/T2`);
       }
-      if (stat.as_of !== undefined && currentYear - stat.as_of > STALE_AFTER_YEARS) {
+      const stale = stat.as_of !== undefined && currentYear - stat.as_of > STALE_AFTER_YEARS;
+      if (stale && !stat.historical) {
         warnings.push(`${where} is from ${stat.as_of}, more than ${STALE_AFTER_YEARS} years old`);
       }
+    }
+    for (const cite of data.cites) {
+      if (!byId.has(cite)) errors.push(`${id}: prose cites unknown source "${cite}"`);
     }
     for (const action of data.actions) {
       if (action.evidence !== null && !byId.has(action.evidence)) {

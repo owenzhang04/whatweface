@@ -157,4 +157,11 @@ describe("citation check", () => {
     expect(report.errors).toEqual([]);
     expect(report.warnings[0]).toContain("more than 5 years old");
   });
+
+  it("doesn't warn about a stat marked historical", () => {
+    const stats = [{ ...validStat, as_of: 1750, historical: true }];
+    const old = problemSchema.parse({ ...validProblem, stats });
+    const { problems, sources } = entries(old, [source]);
+    expect(checkCitations(problems, sources, 2026).warnings).toEqual([]);
+  });
 });

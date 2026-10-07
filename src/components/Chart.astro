@@ -1,0 +1,88 @@
+---
+import CiteMark from "./CiteMark.astro";
+import DataTable from "./DataTable.astro";
+import { describeSeries, renderLineChart } from "../lib/charts";
+import { citationNumber, problemContext } from "../lib/page-context";
+import { loadSeries, periodLabel } from "../lib/series";
+
+interface Props {
+  series: string;
+  source: string;
+  title: string;
+  unit: string;
+  yLabel: string;
+  // Why the y-axis doesn't start at zero, or what zero means (DESIGN §8).
+  axisNote: string;
+}
+
+const { series: seriesId, source: sourceId, title, unit, yLabel, axisNote } = Astro.props;
+const ctx = problemContext(Astro.locals);
+const source = ctx.sources.get(sourceId);
+if (!source) throw new Error(`<Chart source="${sourceId}"> is not in the registry`);
+const n = citationNumber(ctx, sourceId);
+const series = loadSeries(seriesId);
+const summary = describeSeries(series, unit);
+const id = `chart-${seriesId.replace(/\W+/g, "-")}`;
+const svg = renderLineChart(series, { id, title, description: summary, yLabel });
+const latest = periodLabel(series.points.at(-1)!);
+---
+
+<figure class={`chart scale-${ctx.scale}`} aria-labelledby={`${id}-caption`}>
+  <div class="plot" set:html={svg} />
+  <figcaption id={`${id}-caption`}>
+    <p class="title">{title}</p>
+    <p>{summary}</p>
+    <p class="meta">
+      {axisNote} Source: {source.publisher}, {source.title}
+      <CiteMark n={n} />. Data through {latest}.{source.license && <> License: {source.license}.</>}
+    </p>
+  </figcaption>
+  <DataTable series={series} caption={title} valueLabel={`${title} (${unit})`} />
+</figure>
+
+<style>
+  .chart {
+    margin: var(--space-6) 0;
+    max-width: var(--measure);
+  }
+
+  .plot {
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+
+  .plot :global(svg) {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .scale-individual .plot :global(.chart-line) {
+    stroke: var(--scale-individual);
+  }
+
+  .scale-humanity .plot :global(.chart-line) {
+    stroke: var(--scale-humanity);
+  }
+
+  .scale-earth .plot :global(.chart-line) {
+    stroke: var(--scale-earth);
+  }
+
+  .plot :global(.chart-baseline) {
+    stroke: var(--text);
+  }
+
+  figcaption p {
+    margin: var(--space-2) 0;
+    font-size: 1rem;
+  }
+
+  .title {
+    font-weight: 500;
+  }
+
+  .meta {
+    color: var(--muted);
+  }
+</style>

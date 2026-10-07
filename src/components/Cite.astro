@@ -1,0 +1,13 @@
+---
+import CiteMark from "./CiteMark.astro";
+import { citationNumber, problemContext } from "../lib/page-context";
+
+interface Props {
+  source: string;
+}
+
+const ctx = problemContext(Astro.locals);
+const n = citationNumber(ctx, Astro.props.source);
+---
+
+<CiteMark n={n} />

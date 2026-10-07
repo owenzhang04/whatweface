@@ -1,0 +1,62 @@
+---
+import CiteMark from "./CiteMark.astro";
+import type { ResolvedStat } from "../lib/stats";
+
+interface Props {
+  stat: ResolvedStat;
+  citation: number;
+}
+
+const { stat, citation } = Astro.props;
+---
+
+<div class="headline">
+  <p class="number">
+    {stat.display}
+    <span class="unit">{stat.unit}</span>
+  </p>
+  <p class="label">
+    {stat.label}, {stat.period}.
+    {stat.spread && (
+      <>
+        {" "}
+        Uncertainty {stat.spread} {stat.unit}.
+      </>
+    )}
+    <CiteMark n={citation} />
+  </p>
+  {stat.note && <p class="note">{stat.note}</p>}
+</div>
+
+<style>
+  .headline {
+    margin: var(--space-7) 0 var(--space-6);
+  }
+
+  .number {
+    color: var(--ember);
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: none;
+  }
+
+  .unit {
+    font-size: 0.3em;
+    margin-left: 0.25em;
+    letter-spacing: 0;
+  }
+
+  .label {
+    font-size: 1.375rem;
+    margin: var(--space-4) 0 0;
+  }
+
+  .note {
+    color: var(--muted);
+    margin: var(--space-2) 0 0;
+  }
+</style>

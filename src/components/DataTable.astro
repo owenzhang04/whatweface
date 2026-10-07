@@ -1,0 +1,80 @@
+---
+import { formatNumber } from "../lib/stats";
+import { periodLabel, type Series } from "../lib/series";
+
+interface Props {
+  series: Series;
+  caption: string;
+  valueLabel: string;
+}
+
+const { series, caption, valueLabel } = Astro.props;
+---
+
+<details class="data-table">
+  <summary>Show data table</summary>
+  <div class="scroll" tabindex="0" role="region" aria-label={`Data table: ${caption}`}>
+    <table>
+      <caption>{caption}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{series.points[0]?.month ? "Month" : "Year"}</th>
+          <th scope="col">{valueLabel}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {series.points.map((p) => (
+          <tr>
+            <th scope="row">{periodLabel(p)}</th>
+            <td>{formatNumber(p.value, series.decimals)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<style>
+  summary {
+    cursor: pointer;
+    min-height: 44px;
+    padding-block: var(--space-2);
+  }
+
+  .scroll {
+    max-height: 24rem;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+  }
+
+  table {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  caption {
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    color: var(--muted);
+  }
+
+  th,
+  td {
+    padding: var(--space-1) var(--space-3);
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+  }
+
+  th[scope="row"],
+  th[scope="col"]:first-child {
+    text-align: left;
+    font-weight: 400;
+  }
+
+  thead th {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    font-weight: 500;
+  }
+</style>

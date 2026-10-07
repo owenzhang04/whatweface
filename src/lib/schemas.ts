@@ -33,10 +33,16 @@ export const statSchema = z
     label: z.string().min(1),
     value: z.number().optional(),
     range: z.tuple([z.number(), z.number()]).optional(),
+    // For sources that state "value ± uncertainty" rather than a range.
+    uncertainty: z.number().positive().optional(),
     unit: z.string().min(1),
     as_of: z.number().int().optional(),
+    // A fixed past reference point (e.g. a pre-industrial level), exempt from the staleness warning.
+    historical: z.boolean().default(false),
     source: kebabId,
     series: z.string().optional(),
+    // With `series`: compare against the point this many years before the latest.
+    offset_years: z.number().int().positive().optional(),
     note: z.string().optional(),
   })
   .refine((s) => s.value !== undefined || s.series !== undefined, {
@@ -45,6 +51,13 @@ export const statSchema = z
   .refine((s) => s.series !== undefined || s.as_of !== undefined, {
     message: "a stat with a typed value needs `as_of`",
     path: ["as_of"],
+  })
+  .refine((s) => s.range === undefined || s.uncertainty === undefined, {
+    message: "give either `range` or `uncertainty`, not both",
+  })
+  .refine((s) => s.range === undefined || s.range[0] <= s.range[1], {
+    message: "range must be [low, high]",
+    path: ["range"],
   });
 
 export const derivedSchema = z.strictObject({
@@ -78,6 +91,8 @@ export const problemSchema = z
     content_note: z.string().optional(),
     headline: kebabId,
     stats: z.array(statSchema).min(1),
+    // Sources cited in prose with <Cite>, in addition to those behind stats.
+    cites: z.array(kebabId).default([]),
     derived: z.array(derivedSchema).default([]),
     actions: z.array(actionSchema).default([]),
   })

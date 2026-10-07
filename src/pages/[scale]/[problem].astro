@@ -1,0 +1,83 @@
+---
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ActionList from "../../components/ActionList.astro";
+import Chart from "../../components/Chart.astro";
+import Cite from "../../components/Cite.astro";
+import ContentNote from "../../components/ContentNote.astro";
+import DerivedStat from "../../components/DerivedStat.astro";
+import EditorialBadge from "../../components/EditorialBadge.astro";
+import HeadlineStat from "../../components/HeadlineStat.astro";
+import MetaStrip from "../../components/MetaStrip.astro";
+import MoreDetail from "../../components/MoreDetail.astro";
+import SourceList from "../../components/SourceList.astro";
+import Stat from "../../components/Stat.astro";
+import { getCheckedContent } from "../../lib/content";
+import { loadSeries } from "../../lib/series";
+import { resolveProblem } from "../../lib/stats";
+
+export const getStaticPaths = (async () => {
+  const { problems, sources } = await getCheckedContent();
+  const sourceMap = new Map(sources.map((s) => [s.data.id, s.data]));
+  return problems.map((entry) => {
+    const [folder, slug] = entry.id.split("/");
+    if (folder !== entry.data.scale || !slug) {
+      throw new Error(
+        `Problem "${entry.id}" must live in src/content/problems/${entry.data.scale}/<slug>.mdx`,
+      );
+    }
+    return { params: { scale: folder, problem: slug }, props: { entry, sourceMap } };
+  });
+}) satisfies GetStaticPaths;
+
+const { entry, sourceMap } = Astro.props;
+const problem = entry.data;
+const resolved = resolveProblem(problem, (id) => loadSeries(id));
+Astro.locals.problem = {
+  ...resolved,
+  scale: problem.scale,
+  sources: sourceMap,
+  actions: problem.actions,
+};
+
+const headline = resolved.stats.get(problem.headline)!;
+const headlineCitation = resolved.citations.get(headline.source)!;
+const { Content } = await render(entry);
+
+const REVIEW_AFTER_MS = 365 * 24 * 60 * 60 * 1000;
+const reviewOverdue = Date.now() - problem.last_reviewed.getTime() > REVIEW_AFTER_MS;
+---
+
+<BaseLayout title={problem.title} description={problem.description}>
+  <article class="problem">
+    <header>
+      <MetaStrip problem={problem} />
+      <h1>{problem.title}</h1>
+      {problem.content_note && <ContentNote note={problem.content_note} />}
+      {reviewOverdue && (
+        <p class="review-notice">
+          This page hasn't been reviewed in over a year. Some numbers may be out of date.
+        </p>
+      )}
+      <HeadlineStat stat={headline} citation={headlineCitation} />
+      {resolved.derived.map((d) => (
+        <DerivedStat text={d.text} />
+      ))}
+    </header>
+
+    <Content components={{ ActionList, Chart, Cite, EditorialBadge, MoreDetail, Stat }} />
+
+    <section aria-labelledby="sources-heading">
+      <h2 id="sources-heading">Sources</h2>
+      <SourceList citations={resolved.citations} sources={sourceMap} />
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .review-notice {
+    border-left: 2px solid var(--ember);
+    padding-left: var(--space-4);
+  }
+</style>

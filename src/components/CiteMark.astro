@@ -1,0 +1,26 @@
+---
+interface Props {
+  n: number;
+}
+
+const { n } = Astro.props;
+---
+
+<sup class="cite">
+  <a href={`#source-${n}`}>
+    <span class="visually-hidden">Source </span>
+    {n}
+  </a>
+</sup>
+
+<style>
+  .cite {
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    line-height: 0;
+  }
+
+  .cite a {
+    padding-inline: 0.15em;
+  }
+</style>

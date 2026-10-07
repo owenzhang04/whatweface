@@ -1,0 +1,37 @@
+---
+import CiteMark from "./CiteMark.astro";
+import { citationNumber, problemContext } from "../lib/page-context";
+
+interface Props {
+  id: string;
+  // Show the period ("in August 2026") after the value.
+  withPeriod?: boolean;
+}
+
+const { id, withPeriod = false } = Astro.props;
+const ctx = problemContext(Astro.locals);
+const stat = ctx.stats.get(id);
+if (!stat) throw new Error(`<Stat id="${id}"> doesn't match any stat in this problem`);
+const n = citationNumber(ctx, stat.source);
+---
+
+<span class="stat">
+  <strong>{stat.display}</strong> {stat.unit}
+  {stat.spread && <span class="spread"> ({stat.spread})</span>}
+  {withPeriod && <> in {stat.period}</>}
+  <CiteMark n={n} />
+</span>
+
+<style>
+  .stat {
+    font-variant-numeric: tabular-nums;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  .spread {
+    color: var(--muted);
+  }
+</style>
