@@ -17,4 +17,13 @@ export default defineConfig(
   js.configs.recommended,
   tseslint.configs.recommended,
   astro.configs.recommended,
+  {
+    // Lighthouse CI loads its config with require(), so it stays CommonJS.
+    files: ["**/*.cjs"],
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: { require: "readonly", module: "writable", process: "readonly" },
+    },
+    rules: { "@typescript-eslint/no-require-imports": "off" },
+  },
 );

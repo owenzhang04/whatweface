@@ -34,6 +34,10 @@ export function renderLineChart(series: Series, opts: LineChartOptions): string 
     ],
   }) as unknown as Element;
 
+  // The SVG is one role="img" with a title and description, so Plot's labels
+  // on inner groups are redundant (and invalid on elements without a role).
+  for (const el of svg.querySelectorAll("[aria-label]")) el.removeAttribute("aria-label");
+
   const titleId = `${opts.id}-title`;
   const descId = `${opts.id}-desc`;
   const title = document.createElement("title");

@@ -16,7 +16,9 @@
     "test": "vitest run",
     "check": "pnpm typecheck && pnpm lint && pnpm test",
     "test:e2e": "playwright test",
-    "fetch-data": "node scripts/fetch-data.ts"
+    "fetch-data": "node scripts/fetch-data.ts",
+    "test:gate": "node scripts/check-build-gate.ts",
+    "lighthouse": "lhci autorun --config=lighthouserc.cjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.3",
