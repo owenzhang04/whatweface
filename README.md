@@ -2,7 +2,7 @@
 
 ![What We Face: climate change page](docs/preview.png)
 
-*The climate change page from the Phase 1 preview deploy (PR #2).*
+*The climate change page, live at [whatweface.pages.dev](https://whatweface.pages.dev/earth/climate-change).*
 
 A website about the biggest problems we have faced, are facing, and will face, at three scales:
 
