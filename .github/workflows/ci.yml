@@ -44,9 +44,8 @@ jobs:
         run: pnpm test:e2e
 
       - name: Lighthouse CI (a11y = 100, perf >= 95)
-        run: |
-          export CHROME_PATH="$(node -e "console.log(require('@playwright/test').chromium.executablePath())")"
-          pnpm lighthouse
+        # Uses the Google Chrome preinstalled on the runner.
+        run: pnpm lighthouse
 
       - name: Upload reports
         if: ${{ !cancelled() }}
