@@ -58,7 +58,9 @@ async function runCase(c: Case): Promise<string | null> {
     await writeFile(target, c.edit(await readFile(target, "utf8")));
 
     const result = spawnSync("pnpm", ["exec", "astro", "build"], { cwd: dir, encoding: "utf8" });
-    const output = `${result.stdout}\n${result.stderr}`;
+    // CI forces colour output; strip ANSI codes before matching messages.
+    // eslint-disable-next-line no-control-regex -- matching the ESC character is the point
+    const output = `${result.stdout}\n${result.stderr}`.replace(/\u001b\[[0-9;]*m/g, "");
     if (result.status === 0) return `build succeeded but should have failed`;
     if (!c.expect.test(output)) {
       return `build failed, but without the expected message ${c.expect}:\n${output.slice(-2000)}`;
