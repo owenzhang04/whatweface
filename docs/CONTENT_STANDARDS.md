@@ -62,6 +62,16 @@ stats:
 
 The value above is a placeholder showing the format, not a real figure.
 
+Other stat fields (Phase 1):
+- `uncertainty`: for sources that state "value ± u" rather than a range. Use `range` or `uncertainty`, not both.
+- `series` + `offset_years`: take the value from the point N years before the latest, same month (e.g. "ten years earlier").
+- `historical: true`: a fixed past reference point (e.g. CO₂ in 1750). Exempt from the 5-year staleness warning.
+- `note`: a short caveat shown under the headline stat.
+
+A problem's `headline` names one of its stat ids. `cites` lists sources used in prose with `<Cite source="…" />`; prose numbers use `<Stat id="…" />`, never typed digits.
+
+The build also fails when **any** stat, not only the headline, cites a T3 source (CLAUDE.md: no number without a T1/T2 source).
+
 ### Derived stats
 
 Human-scale conversions ("one death every 7 seconds", "your city emptied twice a year") are computed at build time from a sourced stat, never typed by hand.

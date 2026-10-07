@@ -56,3 +56,4 @@ jobs:
             playwright-report/
             .lighthouseci/
           retention-days: 14
+          include-hidden-files: true
