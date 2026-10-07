@@ -1,0 +1,69 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ComingSoon from "../components/ComingSoon.astro";
+import { getCheckedContent } from "../lib/content";
+import { SCALE_LIST, type ScaleInfo } from "../lib/scales";
+
+export const getStaticPaths = (() =>
+  SCALE_LIST.map((scale) => ({
+    params: { scale: scale.slug },
+    props: { scale },
+  }))) satisfies GetStaticPaths;
+
+interface Props {
+  scale: ScaleInfo;
+}
+
+const { scale } = Astro.props;
+const { problems } = await getCheckedContent();
+const published = problems.filter((p) => p.data.scale === scale.slug);
+---
+
+<BaseLayout title={scale.name} description={`${scale.name} scale: ${scale.summary}`}>
+  <p class={`mono eyebrow scale-${scale.slug}`}>Scale {scale.number}</p>
+  <h1>{scale.name}</h1>
+  <p class="summary">{scale.summary}</p>
+
+  <h2>How this list is ranked</h2>
+  <p>{scale.metric}</p>
+  <p>
+    The ranked list of five problems is coming soon. Problems are ranked only within a scale, never
+    across scales, because the metrics aren't comparable.
+  </p>
+
+  <h2>Published so far</h2>
+  {published.length > 0 ? (
+    <ul>
+      {published.map((p) => (
+        <li>
+          <a href={`/${p.id}`}>{p.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <ComingSoon what={`The ${scale.name} scale's problem pages`} />
+  )}
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    margin: 0 0 var(--space-2);
+  }
+
+  .scale-individual {
+    color: var(--scale-individual);
+  }
+
+  .scale-humanity {
+    color: var(--scale-humanity);
+  }
+
+  .scale-earth {
+    color: var(--scale-earth);
+  }
+
+  .summary {
+    font-size: 1.375rem;
+  }
+</style>

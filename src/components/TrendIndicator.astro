@@ -1,0 +1,14 @@
+---
+// The trend is computed from a series (PLAN.md Phase 3), never typed by hand.
+export type Trend = "Improving" | "Stable" | "Worsening";
+
+interface Props {
+  trend: Trend;
+}
+
+const { trend } = Astro.props;
+---
+
+<span>
+  Trend: <a href="/method#trend">{trend}</a>
+</span>

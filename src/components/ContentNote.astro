@@ -1,0 +1,26 @@
+---
+interface Props {
+  note: string;
+}
+
+const { note } = Astro.props;
+---
+
+<aside class="content-note" aria-label="Content note">
+  <p>
+    <span class="mono">Content note</span> {note}
+  </p>
+</aside>
+
+<style>
+  .content-note {
+    border-left: 2px solid var(--muted);
+    padding-left: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .content-note .mono {
+    color: var(--muted);
+    margin-right: var(--space-2);
+  }
+</style>

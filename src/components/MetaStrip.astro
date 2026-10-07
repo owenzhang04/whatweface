@@ -1,0 +1,58 @@
+---
+import { SCALE_INFO } from "../lib/scales";
+import type { Problem } from "../lib/schemas";
+import TrendIndicator, { type Trend } from "./TrendIndicator.astro";
+
+interface Props {
+  problem: Problem;
+  trend?: Trend;
+}
+
+const { problem, trend } = Astro.props;
+const scale = SCALE_INFO[problem.scale];
+const reviewed = problem.last_reviewed.toISOString().slice(0, 7);
+---
+
+<p class={`meta mono scale-${scale.slug}`}>
+  <a href={`/${scale.slug}`}>
+    Scale {scale.number} / {scale.name}
+  </a>
+  <span aria-hidden="true">·</span>
+  <span>Status: {problem.status}</span>
+  {trend && (
+    <>
+      <span aria-hidden="true">·</span>
+      <TrendIndicator trend={trend} />
+    </>
+  )}
+  <span aria-hidden="true">·</span>
+  <span>
+    Reviewed <time datetime={reviewed}>{reviewed}</time>
+  </span>
+</p>
+
+<style>
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    margin: 0 0 var(--space-4);
+    color: var(--muted);
+  }
+
+  .meta a {
+    text-decoration: none;
+  }
+
+  .scale-individual a {
+    color: var(--scale-individual);
+  }
+
+  .scale-humanity a {
+    color: var(--scale-humanity);
+  }
+
+  .scale-earth a {
+    color: var(--scale-earth);
+  }
+</style>

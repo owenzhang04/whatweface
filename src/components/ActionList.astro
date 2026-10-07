@@ -1,0 +1,54 @@
+---
+import CiteMark from "./CiteMark.astro";
+import EditorialBadge from "./EditorialBadge.astro";
+import { citationNumber, problemContext } from "../lib/page-context";
+import { ACTION_KINDS } from "../lib/schemas";
+
+const ctx = problemContext(Astro.locals);
+const groups = ACTION_KINDS.map((kind) => ({
+  kind,
+  actions: ctx.actions.filter((a) => a.kind === kind),
+})).filter((g) => g.actions.length > 0);
+---
+
+<div class="actions">
+  {groups.map((g) => (
+    <section aria-labelledby={`action-${g.kind}`}>
+      <h3 id={`action-${g.kind}`} class="mono">
+        {g.kind}
+      </h3>
+      <ul>
+        {g.actions.map((a) => (
+          <li>
+            {a.url ? <a href={a.url}>{a.title}</a> : a.title}
+            {a.evidence === null ? (
+              <EditorialBadge />
+            ) : (
+              <CiteMark n={citationNumber(ctx, a.evidence)} />
+            )}
+            {a.description && <p>{a.description}</p>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>
+
+<style>
+  .actions h3 {
+    color: var(--muted);
+    margin-bottom: var(--space-2);
+  }
+
+  ul {
+    padding-left: var(--space-5);
+  }
+
+  li {
+    margin-bottom: var(--space-3);
+  }
+
+  li p {
+    margin: var(--space-1) 0 0;
+  }
+</style>

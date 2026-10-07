@@ -1,0 +1,56 @@
+---
+import type { Source } from "../lib/schemas";
+
+interface Props {
+  citations: Map<string, number>;
+  sources: Map<string, Source>;
+}
+
+const { citations, sources } = Astro.props;
+const list = [...citations].map(([id, n]) => {
+  const source = sources.get(id);
+  if (!source) throw new Error(`Cited source "${id}" is not in the registry`);
+  return { n, source };
+});
+const accessed = (d: Date) => d.toISOString().slice(0, 10);
+---
+
+<ol class="sources">
+  {list.map(({ n, source: s }) => (
+    <li id={`source-${n}`}>
+      <span class="mono tier">Tier {s.tier}</span>
+      {s.publisher}. <a href={s.url}>{s.title}</a> ({s.year}). {s.locator}.{" "}
+      <a href={s.archived_url}>
+        Archived copy<span class="visually-hidden"> of source {n}</span>
+      </a>
+      <span class="accessed">, accessed {accessed(s.accessed)}.</span>
+      {s.license && <span class="license"> License: {s.license}.</span>}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .sources {
+    padding-left: var(--space-6);
+    font-size: 1rem;
+  }
+
+  li {
+    margin-bottom: var(--space-3);
+  }
+
+  li:target {
+    outline: 1px solid var(--ember);
+    outline-offset: 4px;
+  }
+
+  .tier {
+    color: var(--muted);
+    margin-right: var(--space-2);
+  }
+
+  .accessed,
+  .license {
+    color: var(--muted);
+  }
+</style>
