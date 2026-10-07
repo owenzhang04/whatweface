@@ -43,7 +43,7 @@ docs/
 ### Phase 0: Planning (done 2026-10-06)
 Repo, planning docs, decisions log, kickoff prompt.
 
-### Phase 1: Skeleton with one real page (built 2026-10-06, PR #2; waiting on the Cloudflare Pages preview)
+### Phase 1: Skeleton with one real page (done 2026-10-06, PR #2)
 Build the whole pipeline end to end with **one** fully real problem: **Climate change** (Earth). Its data sources (NOAA CO₂, NASA GISTEMP) are already verified.
 
 - Astro + TS scaffold, pnpm, strict tsconfig, ESLint/Prettier
@@ -56,7 +56,7 @@ Build the whole pipeline end to end with **one** fully real problem: **Climate c
 - CI: typecheck, Vitest, build, Playwright + axe on every route, Lighthouse CI
 - Deploy to Cloudflare Pages preview
 
-**Status 2026-10-06:** everything below is met in CI except the preview deploy, which needs the Cloudflare dashboard connection. Deferred from this phase, on purpose: the computed Trend label (needs the threshold, Phase 3), share cards (Phase 4), the headline count-up and scroll fades (optional per DESIGN §5), `scripts/lint-content.ts` (rule 1 is followed by hand for now: the climate prose has no digits), and Do/Give/Advocate actions for climate (need effectiveness evidence, Phase 2).
+**Status 2026-10-06:** exit criteria met. CI is green, and the Cloudflare Pages preview is live at `https://phase-1-skeleton.whatweface.pages.dev`; the Playwright + axe suite also passes against it (`BASE_URL=<url> pnpm test:e2e`). Deferred from this phase, on purpose: the computed Trend label (needs the threshold, Phase 3), share cards (Phase 4), the headline count-up and scroll fades (optional per DESIGN §5), `scripts/lint-content.ts` (rule 1 is followed by hand for now: the climate prose has no digits), and Do/Give/Advocate actions for climate (need effectiveness evidence, Phase 2).
 
 **Exit criteria:** the climate page passes CI (axe 0 violations, Lighthouse a11y 100 / perf ≥ 95), works in both themes, reflows at 320px, and every number on it traces to an archived T1/T2 source. Removing a source from a stat makes the build fail.
 

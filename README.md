@@ -8,7 +8,7 @@ A website about the biggest problems we have faced, are facing, and will face, a
 
 Each problem gets a short, plain-language page: how big it is (every number cited), where it's heading, what works, and what you can do about it.
 
-**Status:** Phase 1 (skeleton plus one real page, climate change) is in review. See [docs/PLAN.md](docs/PLAN.md).
+**Status:** Phase 1 done: the pipeline end to end with one real page (climate change). Phase 2 (content) is next. See [docs/PLAN.md](docs/PLAN.md).
 
 ## Development
 
