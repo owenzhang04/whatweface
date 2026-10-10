@@ -11,7 +11,15 @@ import { join, relative } from "node:path";
 
 const ROOT = process.cwd();
 const PROBLEM = "src/content/problems/earth/climate-change.mdx";
-const SKIP = new Set(["node_modules", "dist", ".astro", ".git", ".lighthouseci", "test-results"]);
+const SKIP = new Set([
+  "node_modules",
+  "dist",
+  ".astro",
+  ".git",
+  ".lighthouseci",
+  "playwright-report",
+  "test-results",
+]);
 
 interface Case {
   name: string;
