@@ -24,7 +24,10 @@ const groups = ACTION_KINDS.map((kind) => ({
             {a.evidence === null ? (
               <EditorialBadge />
             ) : (
-              <CiteMark n={citationNumber(ctx, a.evidence)} />
+              // Spaced off the title link so each is a 24px target (WCAG 2.5.8).
+              <span class="evidence">
+                <CiteMark n={citationNumber(ctx, a.evidence)} />
+              </span>
             )}
             {a.description && <p>{a.description}</p>}
           </li>
@@ -46,6 +49,10 @@ const groups = ACTION_KINDS.map((kind) => ({
 
   li {
     margin-bottom: var(--space-3);
+  }
+
+  .evidence {
+    margin-inline-start: var(--space-2);
   }
 
   li p {
