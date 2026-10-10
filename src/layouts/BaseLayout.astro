@@ -4,6 +4,7 @@ import "../styles/global.css";
 import ThemeInit from "../components/ThemeInit.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import ScaleNav from "../components/ScaleNav.astro";
+import { repoFile } from "../lib/site";
 
 interface Props {
   title: string;
@@ -66,13 +67,10 @@ const fullTitle = title === "What We Face" ? title : `${title} · What We Face`;
         </nav>
         <ul class="mono license">
           <li>
-            Code <a href="https://github.com/owenzhang04/whatweface/blob/main/LICENSE">MIT</a>
+            Code <a href={repoFile("LICENSE")}>MIT</a>
           </li>
           <li>
-            Content{" "}
-            <a href="https://github.com/owenzhang04/whatweface/blob/main/LICENSE-CONTENT">
-              CC BY 4.0
-            </a>
+            Content <a href={repoFile("LICENSE-CONTENT")}>CC BY 4.0</a>
           </li>
           <li>
             Fonts <a href="/fonts/OFL.txt">SIL OFL</a>

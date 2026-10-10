@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ComingSoon from "../components/ComingSoon.astro";
+import { NEW_ISSUE_URL } from "../lib/site";
 ---
 
 <BaseLayout
@@ -10,9 +11,8 @@ import ComingSoon from "../components/ComingSoon.astro";
   <h1>Accessibility</h1>
   <p>
     This site aims to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. If
-    something doesn't work for you,{" "}
-    <a href="https://github.com/owenzhang04/whatweface/issues/new">open an issue</a> and describe
-    what happened.
+    something doesn't work for you, <a href={NEW_ISSUE_URL}>open an issue</a> and describe what
+    happened.
   </p>
   <ComingSoon what="The full accessibility statement" />
 </BaseLayout>

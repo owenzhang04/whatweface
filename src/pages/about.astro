@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ComingSoon from "../components/ComingSoon.astro";
+import { NEW_ISSUE_URL } from "../lib/site";
 ---
 
 <BaseLayout title="About" description="Who made What We Face, why, and how to report a correction.">
   <h1>About</h1>
   <p>
-    Found a wrong or outdated number?{" "}
-    <a href="https://github.com/owenzhang04/whatweface/issues/new">Open an issue</a> with the page,
-    the claim and a better source.
+    Found a wrong or outdated number? <a href={NEW_ISSUE_URL}>Open an issue</a> with the page, the
+    claim and a better source.
   </p>
   <ComingSoon what="The about page" />
 </BaseLayout>

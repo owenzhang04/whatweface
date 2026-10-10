@@ -1,4 +1,6 @@
 ---
+import { repoFile } from "../lib/site";
+
 interface Props {
   what: string;
 }
@@ -10,7 +12,7 @@ const { what } = Astro.props;
   <p class="mono">Coming soon</p>
   <p>
     {what} isn't written yet. You can follow progress in the
-    <a href="https://github.com/owenzhang04/whatweface/blob/main/docs/PLAN.md">project plan</a>.
+    <a href={repoFile("docs/PLAN.md")}>project plan</a>.
   </p>
 </section>
 
