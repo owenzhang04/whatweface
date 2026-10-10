@@ -21,13 +21,9 @@ export const getStaticPaths = (async () => {
   const { problems, sources } = await getCheckedContent();
   const sourceMap = new Map(sources.map((s) => [s.data.id, s.data]));
   return problems.map((entry) => {
-    const [folder, slug] = entry.id.split("/");
-    if (folder !== entry.data.scale || !slug) {
-      throw new Error(
-        `Problem "${entry.id}" must live in src/content/problems/${entry.data.scale}/<slug>.mdx`,
-      );
-    }
-    return { params: { scale: folder, problem: slug }, props: { entry, sourceMap } };
+    // getCheckedContent has already verified the id is "<scale>/<slug>".
+    const slug = entry.id.split("/")[1]!;
+    return { params: { scale: entry.data.scale, problem: slug }, props: { entry, sourceMap } };
   });
 }) satisfies GetStaticPaths;
 

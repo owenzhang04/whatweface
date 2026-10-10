@@ -1,4 +1,5 @@
 import { computeDerived, type DerivedResult } from "./derived";
+import { formatNumber } from "./format";
 import type { Problem, Stat } from "./schemas";
 import { periodLabel, pickPoint, type Series } from "./series";
 
@@ -21,13 +22,6 @@ function decimalsOf(n: number): number {
   const text = String(n);
   const dot = text.indexOf(".");
   return dot === -1 ? 0 : text.length - dot - 1;
-}
-
-export function formatNumber(n: number, decimals: number): string {
-  return new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  }).format(n);
 }
 
 function formatSpread(

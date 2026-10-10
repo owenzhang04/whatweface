@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import { parseHTML } from "linkedom";
-import { formatNumber } from "./stats";
+import { formatNumber } from "./format";
 import { periodLabel, type Series } from "./series";
 
 export interface LineChartOptions {

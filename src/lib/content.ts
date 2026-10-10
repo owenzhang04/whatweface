@@ -1,8 +1,8 @@
 import { getCollection } from "astro:content";
-import { assertCitations, checkCitations } from "./citations";
+import { assertContent, checkContent } from "./content-rules";
 
 /**
- * Loads problems and sources and fails the build if any citation rule is
+ * Loads problems and sources and fails the build if any content rule is
  * broken. Every page that renders content goes through this.
  */
 export async function getCheckedContent() {
@@ -10,6 +10,6 @@ export async function getCheckedContent() {
     getCollection("problems"),
     getCollection("sources"),
   ]);
-  assertCitations(checkCitations(problems, sources, new Date().getFullYear()));
+  assertContent(checkContent(problems, sources, new Date().getFullYear()));
   return { problems, sources };
 }

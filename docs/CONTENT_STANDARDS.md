@@ -52,13 +52,14 @@ Inside each problem's frontmatter:
 stats:
   - id: headcount
     label: People living on less than $3.00 a day
-    value: 000000000              # placeholder; or omit and use `series` for fetched data
+    value: 000000000              # placeholder
     range: [000000000, 000000000] # optional; required if the source gives one
     unit: people
     as_of: 2024
     source: worldbank-pip-2026
-    series: worldbank/SI.POV.DDAY # optional: link to a fetched dataset (see DATA.md)
 ```
+
+For fetched data, replace `value` and `as_of` with `series: <dataset id>` (see DATA.md); the value and year then come from the latest point. A stat has exactly one of `value` or `series`.
 
 The value above is a placeholder showing the format, not a real figure.
 

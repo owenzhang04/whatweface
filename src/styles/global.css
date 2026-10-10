@@ -107,6 +107,19 @@ table {
   text-transform: uppercase;
 }
 
+/* A scale's accent colour: put .scale-<slug> on an element, read var(--scale-color) inside it. */
+.scale-individual {
+  --scale-color: var(--scale-individual);
+}
+
+.scale-humanity {
+  --scale-color: var(--scale-humanity);
+}
+
+.scale-earth {
+  --scale-color: var(--scale-earth);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
