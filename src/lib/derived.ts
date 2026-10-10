@@ -1,3 +1,4 @@
+import { formatNumber } from "./format";
 import type { Derived } from "./schemas";
 
 // Julian year (365.25 days), the convention for converting annual rates to seconds.
@@ -42,12 +43,8 @@ export function multipleOf(value: number, base: number): number {
  * under ten, which keep one decimal so "every 0.4 seconds" doesn't become 0.
  */
 export function formatDerived(n: number, formula: Derived["formula"]): string {
-  const fractionDigits =
-    formula === "multiple_of" || (formula === "per_interval" && n < 10) ? 1 : 0;
-  return new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits,
-  }).format(n);
+  const decimals = formula === "multiple_of" || (formula === "per_interval" && n < 10) ? 1 : 0;
+  return formatNumber(n, decimals);
 }
 
 export interface DerivedResult {
