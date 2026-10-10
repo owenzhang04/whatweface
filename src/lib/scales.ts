@@ -16,9 +16,9 @@ export const SCALE_INFO: Record<Scale, ScaleInfo> = {
     name: "Individual",
     summary: "A person's life and health.",
     metric:
-      "Ranked by disability-adjusted life years (DALYs) lost per year worldwide, from the " +
-      "Institute for Health Metrics and Evaluation's Global Burden of Disease study. DALYs count " +
-      "both early death and years lived in poor health.",
+      "Ranked by the disability-adjusted life years (DALYs) lost worldwide each year that are " +
+      "caused by each risk factor, from the Institute for Health Metrics and Evaluation's Global " +
+      "Burden of Disease study. DALYs count both early death and years lived in poor health.",
   },
   humanity: {
     slug: "humanity",
@@ -36,7 +36,7 @@ export const SCALE_INFO: Record<Scale, ScaleInfo> = {
     summary: "The planet's systems.",
     metric:
       "Ranked by how far the Earth system has moved past its safe limit, using the planetary " +
-      "boundaries framework.",
+      "boundaries framework as assessed in the Planetary Health Check.",
   },
 };
 
