@@ -19,7 +19,7 @@ Each problem gets a short, plain-language page: how big it is (every number cite
 ```sh
 pnpm install
 pnpm dev            # local site
-pnpm check          # typecheck + lint + unit tests
+pnpm check          # typecheck + lint + content lint + unit tests
 pnpm build          # static site in dist/
 pnpm test:gate      # proves broken citations fail the build
 pnpm test:e2e       # Playwright + axe (run pnpm build first)

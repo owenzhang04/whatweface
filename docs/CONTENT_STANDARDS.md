@@ -6,7 +6,7 @@ Every number on the site is data, not prose. If a number cannot be traced to a s
 
 | # | Rule | Enforced by |
 |---|---|---|
-| 1 | Every quantitative claim lives in a structured `stats` entry (value, unit, year, source). No numbers typed loose in body text. | Schema + lint (`scripts/lint-content.ts` flags digits in prose that aren't stat references) |
+| 1 | Every quantitative claim lives in a structured `stats` entry (value, unit, year, source). No numbers typed loose in body text. | Schema + lint (`pnpm lint:content` flags digits and scale words such as "million" or "per cent" in prose; part of `pnpm check`) |
 | 2 | Every stat references a source in the registry. | Schema: build fails |
 | 3 | Headline numbers must come from Tier 1 or Tier 2 sources. | Schema: build fails |
 | 4 | If the source gives a range or confidence interval, show the range. | Review checklist |
