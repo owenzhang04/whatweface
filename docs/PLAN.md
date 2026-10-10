@@ -61,11 +61,21 @@ Build the whole pipeline end to end with **one** fully real problem: **Climate c
 **Exit criteria:** the climate page passes CI (axe 0 violations, Lighthouse a11y 100 / perf ≥ 95), works in both themes, reflows at 320px, and every number on it traces to an archived T1/T2 source. Removing a source from a stat makes the build fail.
 
 ### Phase 2: Content (the long phase)
-- Source the shortlists in PROBLEMS.md; pick the final 5 per scale by metric
+- ~~Source the shortlists in PROBLEMS.md; pick the final 5 per scale by metric~~ (done 2026-10-09)
 - Write the remaining 14 pages to the review checklist
 - `/method`, `/sources`, `/about`, `/accessibility` pages
 
 Honest estimate: a fully cited page takes 2–4 hours to research, write and review. 14 pages ≈ 30–55 hours. That is the bulk of the project. Ship pages to the preview as each one passes review, not all at the end.
+
+**Status 2026-10-09:** started on branch `phase-2-content`. The final 15 are picked (PROBLEMS.md "Final selection", DECISIONS.md 2026-10-09). Work order:
+
+1. ~~`scripts/lint-content.ts` (deferred from Phase 1)~~ (done 2026-10-09): flags numbers in MDX prose; runs in `pnpm check`, so CI enforces it.
+2. Pages, one PR each, in this order. Pages whose primary source is already in hand go first: high blood pressure, air pollution, smoking, high blood sugar (GBD 2023 paper); extreme poverty (World Bank PIP API, verified); biodiversity loss, nitrogen and phosphorus, deforestation and land use (Planetary Health Check 2025); then hunger, unsafe water and sanitation, displacement, infectious disease, plastics and chemicals, low birthweight.
+3. Climate page: add the Do/Give/Advocate actions deferred from Phase 1.
+4. Scale pages: replace "ranked list coming soon" with the ranked 5 plus the Emerging list, once a scale has its pages.
+5. `/method` (ranking rules per scale, rank uncertainty, derived stats), `/sources`, `/about`, `/accessibility`.
+
+**Exit criteria:** 15 problem pages live on the preview, each passing the CONTENT_STANDARDS §9 checklist; the four info pages written; `lint-content.ts` in CI; CI green (axe 0 violations, Lighthouse a11y 100 / perf ≥ 95).
 
 ### Phase 3: Data pipeline
 - `data/datasets.yaml` registry + fetchers (OWID, NOAA, NASA, World Bank) with retry and validation

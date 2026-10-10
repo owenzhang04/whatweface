@@ -1,8 +1,24 @@
 # Problems: v1 candidates
 
-**Status: draft for sign-off.** v1 ships **5 problems per scale (15 total)**. Each scale has a shortlist of 7–8; the final 5 are chosen by that scale's ranking metric once the data is sourced in Phase 2.
+**Status: final 15 picked 2026-10-09** (see "Final selection" below and `docs/research/2026-10-09-phase-2-selection.md`). v1 ships **5 problems per scale (15 total)**. The shortlists below are kept as the record of what was considered.
 
-No figures appear here on purpose: every number gets sourced to the standard in `CONTENT_STANDARDS.md` before it's written down.
+No figures appear here on purpose: every number gets sourced to the standard in `CONTENT_STANDARDS.md` before it's written down. The ranking figures used for selection live in the research note.
+
+## Final selection (2026-10-09)
+
+In metric order within each scale. Ranks are re-checked when each page is written; if a page's verified number changes the order, the scale page follows the data.
+
+| # | Individual (GBD 2023, level 3 risks, share of DALYs) | Humanity (people affected) | Earth (planetary boundary zone, PHC 2025) |
+|---|---|---|---|
+| 1 | High blood pressure | Unsafe water and sanitation | Climate change (live) |
+| 2 | Air pollution (ambient + household particulate matter) | Extreme poverty | Biodiversity loss |
+| 3 | Smoking | Hunger | Nitrogen and phosphorus pollution |
+| 4 | High blood sugar | Infectious disease (malaria, TB, HIV) | Plastics and chemical pollution |
+| 5 | Low birthweight and short gestation | War and forced displacement | Deforestation and land use |
+
+**Emerging** (own list after the ranked 5, Editorial-badged, no full pages in v1): catastrophic pandemics, advanced AI risk, nuclear war.
+
+**Not selected:** high BMI (Individual #6; rank intervals for #3–6 overlap), alcohol, drug use, physical inactivity, poor diet (a level 2 group; the ranking uses level 3 risks only), depression and anxiety (a GBD cause, not a risk factor), antimicrobial resistance (no comparable "people affected" count), freshwater disruption and ocean acidification (both in the zone of increasing risk, less far in than land-system change). Ocean acidification shares climate's driver, so the climate page can mention it.
 
 ## Ranking
 
@@ -60,7 +76,7 @@ Caveat to explain on the page: GBD *risk factors* (blood pressure, tobacco) and 
 | Nitrogen and phosphorus pollution | Biogeochemical flows | Active | Far past its boundary, almost invisible to the public |
 | Plastics and chemical pollution | Novel entities | Active | Ubiquitous; hard to quantify, so be honest about uncertainty |
 | Freshwater disruption | Freshwater change | Active | Groundwater and drought |
-| Ocean acidification | Ocean acidification | Active | Recently assessed as crossed (verify in Phase 2) |
+| Ocean acidification | Ocean acidification | Active | Assessed as crossed for the first time in the Planetary Health Check 2025 |
 | Ozone depletion | Stratospheric ozone | **Overcome** (recovering) | The Montreal Protocol success story; candidate for "Solved before" |
 
 ## Overcome: "solved before" candidates
@@ -71,8 +87,8 @@ Examples showing that problems this size have been solved:
 - Lead in gasoline (phased out worldwide)
 - Child mortality (not solved, but massively reduced. That's an Active/Improving case, not Overcome)
 
-## Open questions
+## Open questions (resolved 2026-10-09)
 
-1. **"Solved before" in v1?** Recommended: ship v1 with 15 ranked problems, then add the strip in v1.1. It doesn't count toward the 5 per scale.
-2. **Air pollution:** it fits Individual (personal exposure, a top GBD risk factor), Humanity and Earth (aerosol loading). Pick one home and cross-link it.
-3. **Emerging problems in the 5:** can an emerging problem take one of the 5 slots per scale, or should emerging problems sit in their own list? Recommended: own list, so the ranked 5 stay purely data-driven.
+1. **"Solved before" in v1?** No. Ships in v1.1 and doesn't count toward the 5 per scale.
+2. **Air pollution:** lives in Individual (a GBD risk factor, ranked #2 by DALYs). Earth cross-links to it.
+3. **Emerging problems in the 5:** no. They sit in their own list, so the ranked 5 stay data-driven.
