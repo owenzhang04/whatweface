@@ -1,5 +1,6 @@
 ---
 import CiteMark from "./CiteMark.astro";
+import { unitSuffix } from "../lib/format";
 import type { ResolvedStat } from "../lib/stats";
 
 interface Props {
@@ -17,12 +18,7 @@ const { stat, citation } = Astro.props;
   </p>
   <p class="label">
     {stat.label}, {stat.period}.
-    {stat.spread && (
-      <>
-        {" "}
-        Uncertainty {stat.spread} {stat.unit}.
-      </>
-    )}
+    {stat.spread && <> {`Uncertainty ${stat.spread}${unitSuffix(stat.unit)}.`}</>}
     <CiteMark n={citation} />
   </p>
   {stat.note && <p class="note">{stat.note}</p>}

@@ -70,7 +70,7 @@ Honest estimate: a fully cited page takes 2–4 hours to research, write and rev
 **Status 2026-10-09:** started on branch `phase-2-content`. The final 15 are picked (PROBLEMS.md "Final selection", DECISIONS.md 2026-10-09). Work order:
 
 1. ~~`scripts/lint-content.ts` (deferred from Phase 1)~~ (done 2026-10-09): flags numbers in MDX prose; runs in `pnpm check`, so CI enforces it.
-2. Pages, one PR each, in this order. Pages whose primary source is already in hand go first: high blood pressure, air pollution, smoking, high blood sugar (GBD 2023 paper); extreme poverty (World Bank PIP API, verified); biodiversity loss, nitrogen and phosphorus, deforestation and land use (Planetary Health Check 2025); then hunger, unsafe water and sanitation, displacement, infectious disease, plastics and chemicals, low birthweight.
+2. Pages, one PR each, in this order (done so far: high blood pressure, 2026-10-09). Pages whose primary source is already in hand go first: high blood pressure, air pollution, smoking, high blood sugar (GBD 2023 paper); extreme poverty (World Bank PIP API, verified); biodiversity loss, nitrogen and phosphorus, deforestation and land use (Planetary Health Check 2025); then hunger, unsafe water and sanitation, displacement, infectious disease, plastics and chemicals, low birthweight.
 3. Climate page: add the Do/Give/Advocate actions deferred from Phase 1.
 4. Scale pages: replace "ranked list coming soon" with the ranked 5 plus the Emerging list, once a scale has its pages.
 5. `/method` (ranking rules per scale, rank uncertainty, derived stats), `/sources`, `/about`, `/accessibility`.

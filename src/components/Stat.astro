@@ -1,5 +1,6 @@
 ---
 import CiteMark from "./CiteMark.astro";
+import { unitSuffix } from "../lib/format";
 import { citationNumber, problemContext } from "../lib/page-context";
 
 interface Props {
@@ -16,7 +17,8 @@ const n = citationNumber(ctx, stat.source);
 ---
 
 <span class="stat">
-  <strong>{stat.display}</strong> {stat.unit}
+  {/* One expression, so formatting can't put a line break (a space) before "%". */}
+  {[<strong>{stat.display}</strong>, unitSuffix(stat.unit)]}
   {stat.spread && <span class="spread"> ({stat.spread})</span>}
   {withPeriod && <> in {stat.period}</>}
   <CiteMark n={n} />

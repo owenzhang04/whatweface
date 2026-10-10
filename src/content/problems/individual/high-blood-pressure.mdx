@@ -1,0 +1,178 @@
+---
+title: High blood pressure
+description: The risk factor behind more lost years of healthy life than any other, why most people who have it don't have it under control, and what works. Every number cited.
+scale: individual
+status: Active
+rank: 1
+last_reviewed: 2026-10-09
+headline: dalys-share
+stats:
+  - id: dalys-share
+    label: Share of all years of healthy life lost worldwide that are attributable to high systolic blood pressure
+    value: 8.4
+    range: [6.9, 10.0]
+    unit: "%"
+    as_of: 2023
+    source: gbd-2023-risk-factors
+    note: Measured in disability-adjusted life years (DALYs), which add up years lost to early death and years lived in poor health. It ranks first among the study's risk factors, though its range overlaps with air pollution's.
+  - id: dalys-share-2010
+    label: The same share in 2010
+    value: 7.3
+    range: [6.0, 8.5]
+    unit: "%"
+    as_of: 2010
+    historical: true
+    source: gbd-2023-risk-factors
+  - id: dalys-growth
+    label: Rise in the number of years of healthy life lost to high systolic blood pressure, 2010 to 2023
+    value: 21.8
+    range: [10.3, 35.4]
+    unit: "%"
+    as_of: 2023
+    source: gbd-2023-risk-factors
+  - id: rate-fall
+    label: Fall in the age-standardised rate of years of healthy life lost to high systolic blood pressure, 2010 to 2023
+    value: 14.7
+    range: [5.4, 22.5]
+    unit: "%"
+    as_of: 2023
+    source: gbd-2023-risk-factors
+  - id: adults-with-hypertension
+    label: Adults aged 30 to 79 with hypertension worldwide
+    value: 1.4
+    unit: billion adults aged 30–79
+    as_of: 2024
+    source: who-hypertension-report-2025
+    note: WHO projects this from NCD Risk Factor Collaboration estimates and gives no range.
+  - id: adults-undiagnosed
+    label: Adults aged 30 to 79 with hypertension who have not been diagnosed
+    value: 600
+    unit: million
+    as_of: 2024
+    source: who-hypertension-report-2025
+  - id: treated-share
+    label: Share of adults aged 30 to 79 with hypertension who are being treated for it
+    value: 44
+    unit: "%"
+    as_of: 2024
+    source: who-hypertension-report-2025
+  - id: adults-controlled
+    label: Adults aged 30 to 79 with hypertension whose blood pressure is controlled
+    value: 320
+    unit: million
+    as_of: 2024
+    source: who-hypertension-report-2025
+  - id: controlled-share
+    label: Share of adults aged 30 to 79 with hypertension whose blood pressure is controlled
+    value: 23
+    unit: "%"
+    as_of: 2024
+    source: who-hypertension-report-2025
+  - id: best-control
+    label: Hypertension control rate that Canada, Costa Rica, Iceland and the Republic of Korea have each passed, the only countries to do so
+    value: 50
+    unit: "%"
+    as_of: 2024
+    source: who-hypertension-report-2025
+  - id: threshold-systolic
+    label: Systolic blood pressure at or above which WHO defines hypertension
+    value: 140
+    unit: mmHg
+    as_of: 2025
+    source: who-hypertension-report-2025
+  - id: threshold-diastolic
+    label: Diastolic blood pressure at or above which WHO defines hypertension
+    value: 90
+    unit: mmHg
+    as_of: 2025
+    source: who-hypertension-report-2025
+  - id: benefit-cost
+    label: Economic benefit of investing in hypertension control compared with its cost, WHO estimate
+    value: 18
+    unit: to 1
+    as_of: 2025
+    source: who-hypertension-report-2025
+  - id: salt-substitute-effect
+    label: Average fall in systolic blood pressure in adults who switched from regular salt to a lower-sodium salt substitute, across trials
+    value: 4.76
+    range: [3.50, 6.01]
+    unit: mmHg
+    as_of: 2025
+    source: who-lsss-guideline-2025
+actions:
+  - kind: Do
+    title: Get your blood pressure measured
+    description: High blood pressure usually has no symptoms, so a measurement is the only way to know. Ask a clinic or health worker to check it.
+    url: https://www.who.int/news-room/fact-sheets/detail/hypertension
+    evidence: who-hypertension-report-2025
+  - kind: Do
+    title: If you use table salt, consider a potassium salt substitute
+    description: WHO suggests this for adults in general. It is not advised for children, pregnant women, or anyone with kidney problems or other conditions that affect potassium. Ask a health worker if you're unsure.
+    url: https://www.who.int/publications/i/item/9789240105591
+    evidence: who-lsss-guideline-2025
+  - kind: Advocate
+    title: Support national salt reduction and hypertension programmes
+    description: The Republic of Korea combined a national plan to cut salt with routine screening and cheap medicines, and now controls blood pressure in a far larger share of people than most countries.
+    url: https://www.who.int/news-room/fact-sheets/detail/sodium-reduction
+    evidence: who-hypertension-report-2025
+  - kind: Learn
+    title: Read WHO's Global report on hypertension
+    description: The World Health Organization's report on who has high blood pressure, who is treated, and how countries have improved control.
+    url: https://www.who.int/publications/i/item/9789240115569
+    evidence: null
+---
+
+## What it is
+
+Blood pressure is the force of blood pushing against the walls of your arteries as your heart pumps. When it stays too high, heart attacks, strokes, kidney disease and dementia become more likely.<Cite source="who-hypertension-report-2025" />
+
+High blood pressure usually causes no symptoms. Many people only find out when a health worker measures it, or after serious harm has already happened. That is why it is called a silent killer.<Cite source="who-hypertension-report-2025" />
+
+## How big it is
+
+The Global Burden of Disease study measures how many years of healthy life are lost to each health risk. High blood pressure tops that list. It accounts for <Stat id="dalys-share" /> of all healthy life lost worldwide, just ahead of air pollution and well ahead of smoking and high blood sugar.
+
+The World Health Organization (WHO) counts the people who have hypertension, the medical name for blood pressure that stays high: <Stat id="adults-with-hypertension" withPeriod />. About <Stat id="adults-undiagnosed" /> of them had never been diagnosed.
+
+## Where it's heading
+
+The share of healthy life lost to high blood pressure has grown. It was <Stat id="dalys-share-2010" withPeriod />. The number of years lost rose by <Stat id="dalys-growth" /> between then and the latest estimate, mostly because there are more people and more of them are old.<Cite source="gbd-2023-risk-factors" /> For a person of a given age, the risk has fallen: the age-standardised rate dropped by <Stat id="rate-fall" />.
+
+Control has improved in every WHO region over recent decades, but most people with hypertension still don't have it under control.<Cite source="who-hypertension-report-2025" /> Only <Stat id="treated-share" /> of adults with hypertension are being treated, and <Stat id="adults-controlled" /> people, or <Stat id="controlled-share" />, have their blood pressure under control.
+
+## What works
+
+High blood pressure can be treated with affordable medicines in everyday primary care, the local clinics where most people see a health worker. WHO's HEARTS package helps countries do this with standard treatment plans, reliable access to medicines, team-based care, and systems to track results.<Cite source="who-hypertension-report-2025" />
+
+Some countries have already made large gains. Canada, Costa Rica, Iceland and the Republic of Korea each control blood pressure in more than <Stat id="best-control" /> of the people who have hypertension. WHO estimates that the economic benefits of hypertension control outweigh its costs by about <Stat id="benefit-cost" />.
+
+Eating less salt lowers blood pressure.<Cite source="who-lsss-guideline-2025" /> In trials, people who switched from regular salt to a lower-sodium salt substitute with added potassium saw their systolic pressure fall by <Stat id="salt-substitute-effect" /> on average.
+
+## What you can do
+
+<ActionList />
+
+## More detail
+
+<MoreDetail title="What the two blood pressure numbers mean">
+  A blood pressure reading has two numbers. The first, systolic pressure, is the pressure while your
+  heart beats. The second, diastolic pressure, is the pressure while it rests between beats. WHO
+  defines hypertension as a systolic reading of <Stat id="threshold-systolic" /> or more, or a
+  diastolic reading of <Stat id="threshold-diastolic" /> or more, measured on two different days.
+</MoreDetail>
+
+<MoreDetail title="Why the two sources count different things">
+  The Global Burden of Disease study counts harm from any systolic pressure above the lowest-risk
+  level, which is lower than the point where doctors diagnose hypertension. Pressure that is raised
+  but not yet "hypertension" still causes harm.
+  <Cite source="who-hypertension-report-2025" /> WHO's counts of people affected use the medical
+  definition instead. So the headline number covers more people than the WHO counts do.
+</MoreDetail>
+
+<MoreDetail title="How certain are these numbers?">
+  The Global Burden of Disease study gives a range for every estimate, shown next to the numbers.
+  High blood pressure and air pollution are close: the study's ranges for their ranks overlap, so
+  either could be first.
+  <Cite source="gbd-2023-risk-factors" /> WHO's counts of people with hypertension are projections
+  from survey-based estimates, and WHO doesn't give a range for them.
+</MoreDetail>
