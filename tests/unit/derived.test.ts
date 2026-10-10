@@ -89,14 +89,14 @@ describe("computeDerived", () => {
     });
   });
 
-  it("fails clearly when the second operand is missing", () => {
-    const def = derivedSchema.parse({
-      id: "ratio",
-      from: "now",
-      formula: "multiple_of",
-      label: "{n} times",
-    });
-    expect(() => computeDerived(def, values)).toThrow(/missing `of`/);
+  it("rejects a two-operand formula without `of`", () => {
+    const def = { id: "ratio", from: "now", formula: "multiple_of", label: "{n} times" };
+    expect(derivedSchema.safeParse(def).success).toBe(false);
+  });
+
+  it("rejects `of` on per_interval, which has one operand", () => {
+    const def = { id: "gap", from: "now", of: "then", formula: "per_interval", label: "{n}" };
+    expect(derivedSchema.safeParse(def).success).toBe(false);
   });
 
   it("fails clearly when a referenced stat has no value", () => {

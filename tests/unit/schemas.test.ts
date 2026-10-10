@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkCitations, assertCitations } from "../../src/lib/citations";
+import { assertContent, checkContent } from "../../src/lib/content-rules";
 import { problemSchema, sourceSchema, type Problem, type Source } from "../../src/lib/schemas";
 
 const validSource = {
@@ -92,7 +92,25 @@ describe("problem schema", () => {
   it("fails when a stat has neither value nor series", () => {
     const stats = [without(validStat, "value")];
     const result = problemSchema.safeParse({ ...validProblem, stats });
-    expect(messages(result)).toContain("`value` or `series`");
+    expect(messages(result)).toContain("exactly one of `value` or `series`");
+  });
+
+  it("fails when a stat has both value and series", () => {
+    const stats = [{ ...validStat, series: "noaa/co2-mlo-monthly" }];
+    const result = problemSchema.safeParse({ ...validProblem, stats });
+    expect(messages(result)).toContain("exactly one of `value` or `series`");
+  });
+
+  it("fails when a series stat also gives as_of", () => {
+    const stats = [{ ...without(validStat, "value"), series: "noaa/co2-mlo-monthly" }];
+    const result = problemSchema.safeParse({ ...validProblem, stats });
+    expect(messages(result)).toContain("remove `as_of`");
+  });
+
+  it("fails when offset_years is set without a series", () => {
+    const stats = [{ ...validStat, offset_years: 10 }];
+    const result = problemSchema.safeParse({ ...validProblem, stats });
+    expect(messages(result)).toContain("`offset_years` only applies to a series stat");
   });
 
   it("fails when the headline is not one of the stats", () => {
@@ -107,21 +125,21 @@ describe("problem schema", () => {
   });
 });
 
-describe("citation check", () => {
+describe("content check", () => {
   const problem = problemSchema.parse(validProblem);
   const source = sourceSchema.parse(validSource);
 
   it("passes when every stat cites a T1/T2 source", () => {
     const { problems, sources } = entries(problem, [source]);
-    expect(checkCitations(problems, sources, 2026).errors).toEqual([]);
+    expect(checkContent(problems, sources, 2026).errors).toEqual([]);
   });
 
   it("fails when a headline stat comes from a T3 source", () => {
     const { problems, sources } = entries(problem, [{ ...source, tier: 3 }]);
-    const { errors } = checkCitations(problems, sources, 2026);
+    const { errors } = checkContent(problems, sources, 2026);
     expect(errors).toHaveLength(1);
     expect(errors[0]).toContain("headline stat from T3");
-    expect(() => assertCitations({ errors, warnings: [] })).toThrow(/Citation check failed/);
+    expect(() => assertContent({ errors, warnings: [] })).toThrow(/Content check failed/);
   });
 
   it("fails when any other stat comes from a T3 source", () => {
@@ -129,39 +147,67 @@ describe("citation check", () => {
     const p = problemSchema.parse({ ...validProblem, stats: [validStat, extra] });
     const news = { ...source, id: "news", tier: 3 as const };
     const { problems, sources } = entries(p, [source, news]);
-    expect(checkCitations(problems, sources, 2026).errors[0]).toContain('stat "other" is a stat');
+    expect(checkContent(problems, sources, 2026).errors[0]).toContain('stat "other" is a stat');
   });
 
   it("fails when a stat cites a source that isn't in the registry", () => {
     const { problems, sources } = entries(problem, []);
-    expect(checkCitations(problems, sources, 2026).errors[0]).toContain("unknown source");
+    expect(checkContent(problems, sources, 2026).errors[0]).toContain("unknown source");
   });
 
   it("fails when an action's evidence isn't in the registry", () => {
     const actions = [{ kind: "Do", title: "Act", evidence: "missing" }];
     const p = problemSchema.parse({ ...validProblem, actions });
     const { problems, sources } = entries(p, [source]);
-    expect(checkCitations(problems, sources, 2026).errors[0]).toContain('action "Act"');
+    expect(checkContent(problems, sources, 2026).errors[0]).toContain('action "Act"');
   });
 
   it("fails when a source file name and its id disagree", () => {
     const { problems } = entries(problem, [source]);
     const sources = [{ id: "other-name", data: source }];
-    expect(checkCitations(problems, sources, 2026).errors[0]).toContain("must match");
+    expect(checkContent(problems, sources, 2026).errors[0]).toContain("must match");
   });
 
   it("warns, but doesn't fail, on stats older than five years", () => {
     const old = problemSchema.parse({ ...validProblem, stats: [{ ...validStat, as_of: 2020 }] });
     const { problems, sources } = entries(old, [source]);
-    const report = checkCitations(problems, sources, 2026);
+    const report = checkContent(problems, sources, 2026);
     expect(report.errors).toEqual([]);
     expect(report.warnings[0]).toContain("more than 5 years old");
+  });
+
+  it("fails when a problem's folder doesn't match its scale", () => {
+    const { sources } = entries(problem, [source]);
+    const problems = [{ id: "humanity/test", data: problem }];
+    expect(checkContent(problems, sources, 2026).errors[0]).toContain("problems/earth/<slug>.mdx");
+  });
+
+  it("fails when two problems in a scale share a rank", () => {
+    const ranked = problemSchema.parse({ ...validProblem, rank: 1 });
+    const { sources } = entries(ranked, [source]);
+    const problems = [
+      { id: "earth/a", data: ranked },
+      { id: "earth/b", data: ranked },
+    ];
+    const { errors } = checkContent(problems, sources, 2026);
+    expect(errors).toEqual(['problems "earth/a" and "earth/b" both claim rank earth #1']);
+  });
+
+  it("allows the same rank in different scales", () => {
+    const earth = problemSchema.parse({ ...validProblem, rank: 1 });
+    const humanity = problemSchema.parse({ ...validProblem, scale: "humanity", rank: 1 });
+    const { sources } = entries(earth, [source]);
+    const problems = [
+      { id: "earth/a", data: earth },
+      { id: "humanity/b", data: humanity },
+    ];
+    expect(checkContent(problems, sources, 2026).errors).toEqual([]);
   });
 
   it("doesn't warn about a stat marked historical", () => {
     const stats = [{ ...validStat, as_of: 1750, historical: true }];
     const old = problemSchema.parse({ ...validProblem, stats });
     const { problems, sources } = entries(old, [source]);
-    expect(checkCitations(problems, sources, 2026).warnings).toEqual([]);
+    expect(checkContent(problems, sources, 2026).warnings).toEqual([]);
   });
 });

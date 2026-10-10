@@ -45,12 +45,20 @@ export const statSchema = z
     offset_years: z.number().int().positive().optional(),
     note: z.string().optional(),
   })
-  .refine((s) => s.value !== undefined || s.series !== undefined, {
-    message: "a stat needs either `value` or `series`",
+  .refine((s) => (s.value === undefined) !== (s.series === undefined), {
+    message: "a stat needs exactly one of `value` or `series`",
   })
   .refine((s) => s.series !== undefined || s.as_of !== undefined, {
     message: "a stat with a typed value needs `as_of`",
     path: ["as_of"],
+  })
+  .refine((s) => s.series === undefined || s.as_of === undefined, {
+    message: "a series stat takes its year from the data; remove `as_of`",
+    path: ["as_of"],
+  })
+  .refine((s) => s.series !== undefined || s.offset_years === undefined, {
+    message: "`offset_years` only applies to a series stat",
+    path: ["offset_years"],
   })
   .refine((s) => s.range === undefined || s.uncertainty === undefined, {
     message: "give either `range` or `uncertainty`, not both",
@@ -60,16 +68,21 @@ export const statSchema = z
     path: ["range"],
   });
 
-export const derivedSchema = z.strictObject({
-  id: kebabId,
-  from: kebabId,
-  formula: z.enum(DERIVED_FORMULAS),
-  // Second operand for share_of_population / multiple_of: another stat id.
-  of: kebabId.optional(),
-  // Time unit N is expressed in for per_interval ("one death every N seconds").
-  per: z.enum(["second", "minute", "hour", "day"]).default("second"),
-  label: z.string().includes("{n}", { message: "label must contain {n}" }),
-});
+export const derivedSchema = z
+  .strictObject({
+    id: kebabId,
+    from: kebabId,
+    formula: z.enum(DERIVED_FORMULAS),
+    // Second operand for share_of_population / multiple_of: another stat id.
+    of: kebabId.optional(),
+    // Time unit N is expressed in for per_interval ("one death every N seconds").
+    per: z.enum(["second", "minute", "hour", "day"]).default("second"),
+    label: z.string().includes("{n}", { message: "label must contain {n}" }),
+  })
+  .refine((d) => (d.formula === "per_interval") === (d.of === undefined), {
+    message: "`of` is required for share_of_population and multiple_of, and unused otherwise",
+    path: ["of"],
+  });
 
 export const actionSchema = z.strictObject({
   kind: z.enum(ACTION_KINDS),
