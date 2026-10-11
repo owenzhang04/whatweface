@@ -1,0 +1,186 @@
+---
+title: Smoking
+description: Smoking is the third biggest risk to healthy life worldwide and the biggest for men. Fewer people smoke each year, but the world is behind on its own target. What works, and what you can do. Every number cited.
+scale: individual
+status: Active
+rank: 3
+last_reviewed: 2026-10-11
+headline: dalys-share
+cites:
+  - who-tobacco-factsheet
+  - who-tobacco-cessation-guideline-2024
+stats:
+  - id: dalys-share
+    label: Share of all years of healthy life lost worldwide that are attributable to smoking
+    value: 5.8
+    range: [4.8, 7.1]
+    unit: "%"
+    as_of: 2023
+    source: gbd-2023-risk-factors
+    note: Measured in disability-adjusted life years (DALYs), which add up years lost to early death and years lived in poor health. It ranks third among the study's risk factors, but its rank could be anywhere from third to sixth, overlapping with high blood sugar, low birthweight and short gestation, and high body-mass index.
+  - id: dalys-share-2010
+    label: The same share in 2010
+    value: 5.9
+    range: [4.9, 7.1]
+    unit: "%"
+    as_of: 2010
+    historical: true
+    source: gbd-2023-risk-factors
+  - id: dalys-change
+    label: Change in the number of years of healthy life lost to smoking, 2010 to 2023
+    value: 3.8
+    range: [-7.1, 15.9]
+    unit: "%"
+    as_of: 2023
+    source: gbd-2023-risk-factors
+  - id: rate-fall
+    label: Fall in the age-standardised rate of years of healthy life lost to smoking, 2010 to 2023
+    value: 25.1
+    range: [16.4, 33.0]
+    unit: "%"
+    as_of: 2023
+    source: gbd-2023-risk-factors
+  - id: secondhand-share
+    label: Share of all years of healthy life lost worldwide that are attributable to second-hand smoke, which the study counts as a separate risk from smoking
+    value: 1.6
+    range: [1.3, 2.0]
+    unit: "%"
+    as_of: 2023
+    source: gbd-2023-risk-factors
+  - id: tobacco-users
+    label: People aged 15 and over who use any tobacco product, smoked or smokeless
+    value: 1.2
+    unit: billion tobacco users
+    as_of: 2024
+    source: who-tobacco-trends-2025
+    note: WHO models this from national surveys and gives no range.
+  - id: smoking-prevalence
+    label: Share of people aged 15 and over who smoke tobacco (age-standardised)
+    value: 16.1
+    unit: "%"
+    as_of: 2024
+    source: who-tobacco-trends-2025
+  - id: prevalence
+    label: Share of people aged 15 and over who use any tobacco product (age-standardised)
+    value: 19.5
+    unit: "%"
+    as_of: 2024
+    source: who-tobacco-trends-2025
+  - id: prevalence-2010
+    label: The same share in 2010
+    value: 26.2
+    unit: "%"
+    as_of: 2010
+    historical: true
+    source: who-tobacco-trends-2025
+  - id: men-prevalence
+    label: Share of men aged 15 and over who use any tobacco product (age-standardised)
+    value: 32.5
+    unit: "%"
+    as_of: 2024
+    source: who-tobacco-trends-2025
+  - id: women-prevalence
+    label: Share of women aged 15 and over who use any tobacco product (age-standardised)
+    value: 6.6
+    unit: "%"
+    as_of: 2024
+    source: who-tobacco-trends-2025
+  - id: target-cut
+    label: Relative cut in tobacco use between 2010 and 2025 that countries agreed in WHO's global action plan on noncommunicable diseases
+    value: 30
+    unit: "%"
+    as_of: 2025
+    source: who-tobacco-trends-2025
+  - id: protected
+    label: People covered by at least one of WHO's main tobacco control measures (MPOWER) at best-practice level
+    value: 6.1
+    unit: billion
+    as_of: 2024
+    source: who-tobacco-epidemic-2025
+  - id: ecig-extra-quitters
+    label: Additional people who stopped smoking for at least six months when given nicotine e-cigarettes instead of nicotine replacement therapy, across trials
+    value: 4
+    range: [1, 7]
+    unit: more people in every 100
+    as_of: 2026
+    source: cochrane-2026-ecig-cessation
+actions:
+  - kind: Do
+    title: If you smoke, get help to quit
+    description: Ask a health worker or a quitline for support. WHO recommends counselling and quit medicines such as nicotine patches or gum, varenicline, bupropion or cytisine, and says the two work best together.
+    url: https://www.who.int/activities/quitting-tobacco
+    evidence: who-tobacco-cessation-guideline-2024
+  - kind: Do
+    title: Keep your home and car smoke-free
+    description: There is no safe level of second-hand smoke. It causes heart disease, lung cancer and other serious illness in the people who breathe it.
+    url: https://www.who.int/news-room/fact-sheets/detail/tobacco
+    evidence: who-tobacco-factsheet
+  - kind: Advocate
+    title: Support higher tobacco taxes
+    description: WHO calls raising prices through tax the most effective way to cut tobacco use, yet it is the measure countries have been slowest to adopt.
+    url: https://www.who.int/publications/i/item/9789240112063
+    evidence: who-tobacco-epidemic-2025
+  - kind: Learn
+    title: Read WHO's fact sheet on tobacco
+    description: The World Health Organization's summary of how tobacco harms health, who uses it, and what countries are doing about it.
+    url: https://www.who.int/news-room/fact-sheets/detail/tobacco
+    evidence: null
+---
+
+## What it is
+
+Smoking means breathing in smoke from burning tobacco, mostly in cigarettes but also in cigars, pipes, bidis and water pipes. Tobacco damages nearly every organ in the body. It causes cancer, heart disease, stroke and lung disease, and leads to early death.<Cite source="who-tobacco-factsheet" />
+
+Nicotine, the drug in tobacco, is highly addictive, which is why quitting is hard. Smoke also harms the people nearby: there is no safe level of second-hand smoke.<Cite source="who-tobacco-factsheet" />
+
+## How big it is
+
+The Global Burden of Disease study measures how many years of healthy life are lost to each health risk. Smoking accounts for <Stat id="dalys-share" /> of all healthy life lost worldwide, behind only high blood pressure and air pollution. The next few risks, including high blood sugar, are close enough that their order isn't certain. For men, smoking is the biggest risk of all.<Cite source="gbd-2023-risk-factors" />
+
+The World Health Organization (WHO) estimates there were <Stat id="tobacco-users" withPeriod />, counting smoked and smokeless tobacco. <Stat id="smoking-prevalence" /> of adults and older teenagers smoke. Men are far more likely to use tobacco than women: <Stat id="men-prevalence" /> of men do, against <Stat id="women-prevalence" /> of women.
+
+## Where it's heading
+
+The harm is falling for each person, but not yet in total. Smoking's share of healthy life lost is about where it was before, at <Stat id="dalys-share-2010" withPeriod />. The number of years lost has barely moved: the estimate changed by <Stat id="dalys-change" />, a range that includes no change at all. For a person of a given age, though, the risk has fallen by <Stat id="rate-fall" />, one of the largest falls among the leading risks. It fell in every region of the world.<Cite source="gbd-2023-risk-factors" />
+
+Fewer people use tobacco. The share of adults who do fell from <Stat id="prevalence-2010" withPeriod /> to <Stat id="prevalence" withPeriod />. Countries agreed to cut tobacco use by <Stat id="target-cut" /> from that earlier level by the middle of this decade. Women reached that goal years early. Men are well behind, and the world as a whole is on course to get there a few years late. In Africa and the Eastern Mediterranean, the number of tobacco users is still rising.<Cite source="who-tobacco-trends-2025" />
+
+## What works
+
+WHO's package of tobacco control measures is called MPOWER: monitor tobacco use, protect people from smoke, offer help to quit, warn about the dangers, enforce bans on advertising, and raise taxes. <Stat id="protected" /> people now live under at least one of these measures at the level WHO recommends. Raising prices through tax is the most effective way to cut tobacco use, but it is the measure that has spread most slowly.<Cite source="who-tobacco-epidemic-2025" />
+
+For people who smoke, quitting is hard, but help works. WHO recommends that health workers give brief advice to quit to every tobacco user they see, with counselling for anyone who wants to quit, and medicines: nicotine replacement therapy (patches, gum or lozenges), varenicline, bupropion and cytisine. Medicines and counselling work best together.<Cite source="who-tobacco-cessation-guideline-2024" />
+
+## What you can do
+
+<ActionList />
+
+## More detail
+
+<MoreDetail title="Second-hand smoke">
+  Breathing in other people's smoke causes heart disease, lung cancer and other serious illness.{" "}
+  <Cite source="who-tobacco-factsheet" /> The Global Burden of Disease study counts it as a separate
+  risk from smoking: on its own, it accounts for <Stat id="secondhand-share" /> of all healthy life
+  lost worldwide.
+</MoreDetail>
+
+<MoreDetail title="What about e-cigarettes?">
+  Experts disagree about e-cigarettes, also called vapes. WHO's guideline on quitting leaves them
+  out, because their benefits and harms are complex.
+  <Cite source="who-tobacco-cessation-guideline-2024" /> A regularly updated Cochrane review of
+  trials found strong evidence that nicotine e-cigarettes help more people quit smoking than
+  nicotine patches or gum: about <Stat id="ecig-extra-quitters" /> stopped for the long term. It
+  found no sign of serious short-term harm, but says longer trials are needed to judge their safety.
+  <Cite source="cochrane-2026-ecig-cessation" /> WHO warns that nicotine is highly addictive and
+  harmful, especially for children and young people.
+  <Cite source="who-tobacco-factsheet" />
+</MoreDetail>
+
+<MoreDetail title="How certain are these numbers?">
+  The Global Burden of Disease study gives a range for every estimate, shown next to the numbers.
+  The ranges for smoking, high blood sugar, low birthweight and high body weight overlap, so their
+  order among the leading risks isn't certain. <Cite source="gbd-2023-risk-factors" /> WHO's counts
+  of tobacco users are modelled from national surveys, and WHO doesn't give a range for them. They
+  include smokeless tobacco, such as chewing tobacco, which the smoking figures leave out.
+  <Cite source="who-tobacco-trends-2025" />
+</MoreDetail>
